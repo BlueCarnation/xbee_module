@@ -128,7 +128,7 @@ fn write_schedulednodes_to_json(nodes: &[discover::RemoteDigiMeshDevice]) -> std
 
     for (index, node) in nodes.iter().enumerate() {
         let durations_data: Vec<_> = node.durations.iter().map(|(start, end)| {
-            json!({"start": start.elapsed().as_secs(), "end": end.elapsed().as_secs()})
+            format!("{}-{}", start.elapsed().as_secs(), end.elapsed().as_secs())
         }).collect();
 
         let node_data = json!({
