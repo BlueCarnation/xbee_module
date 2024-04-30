@@ -86,7 +86,7 @@ pub async fn run_xbee_script() -> Result<bool, Box<dyn std::error::Error>> {
                         write_empty_json().unwrap();
                         return Ok(false);
                     } else {
-                        write_nodes_to_json(nodes)?; 
+                        write_schedulednodes_to_json(nodes)?; 
                         return Ok(true);
                     }
                 } else {
@@ -117,7 +117,7 @@ fn write_nodes_to_json(nodes: &[discover::RemoteDigiMeshDevice]) -> std::io::Res
     let json_data = serde_json::to_string_pretty(&data)?;
     println!("{}", json_data);
 
-    let mut file = File::create("zigbee_data.json")?;
+    let mut file = File::create("xbee_instantdata.json")?;
     file.write_all(json_data.as_bytes())?;
 
     Ok(())
@@ -142,7 +142,7 @@ fn write_schedulednodes_to_json(nodes: &[discover::RemoteDigiMeshDevice]) -> std
     let json_data = serde_json::to_string_pretty(&data)?;
     println!("{}", json_data);
 
-    let mut file = File::create("zigbee_scheduleddata.json")?;
+    let mut file = File::create("xbee_scheduleddata.json")?;
     file.write_all(json_data.as_bytes())?;
 
     Ok(())
@@ -154,7 +154,7 @@ fn write_empty_json() -> std::io::Result<()> {
     let json_data = serde_json::to_string_pretty(&empty_data)?;
     println!("{}", json_data);
 
-    let mut file = File::create("zigbee_data.json")?;
+    let mut file = File::create("xbee_empty.json")?;
     file.write_all(json_data.as_bytes())?;
 
     Ok(())
