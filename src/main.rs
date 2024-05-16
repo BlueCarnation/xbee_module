@@ -110,6 +110,7 @@ fn write_nodes_to_json(nodes: &[discover::RemoteDigiMeshDevice]) -> std::io::Res
         let node_data = json!({
             "node_id": node.node_id,
             "node_address": format!("{:x}", node.addr_64bit),
+            "zigbee_durations": "none",
         });
         data.insert((index + 1).to_string(), node_data);
     }
